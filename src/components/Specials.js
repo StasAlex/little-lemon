@@ -4,7 +4,7 @@ import Card from './Card';
 
 const cards = [
     {
-        img: './cards/salad.jpg', 
+        img: './cards/greek-salad.jpg', 
         title: 'Greek salad', 
         price: '12.99',
         description: 'The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.',
@@ -25,9 +25,9 @@ const cards = [
 
 const Specials = () => {
   return (
-    <div>
-        <div>
-            <h2>Whis week specials!</h2>
+    <div className="px-4 py-6">
+        <div className='flex items-center justify-center flex-wrap mb-5'>
+            <h2 className='text-primary font-medium text-3xl mb-3'>Whis week specials!</h2>
             <Button type="primary" link="/menu" title="Online Menu"/>
         </div>
         <div>

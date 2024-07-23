@@ -11,6 +11,7 @@ import Order from './pages/Order';
 import Login from './pages/Login';
 import Booking from './pages/Booking';
 import NotFound from './pages/NotFound';
+import Dish from './pages/Dish';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/:slug" element={<Dish/>} />
           </Routes>
         </main>
         <Footer />
