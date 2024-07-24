@@ -1,0 +1,12 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 62" width="62" height="62">
+	<title>Component 5-svg</title>
+	<defs>
+		<image width="43" height="43" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAArCAYAAADhXXHAAAAAAXNSR0IArs4c6QAAAWlJREFUWEftmEtKA0EQhr+IguADXAUhK9GFV/As7j2FG5Gcwq1X0E3u4UpduTEL8Y1GYlIwDYMmk56aKUhBNQRm0fXXn6+7p6umg6PRceSVMGu1WkE2yILPA7YLPADvVkuo0N0AtoG3IvYgHbAfYFUhaB0yBlaKJCMxuwbcAPvWmRX6r8BWQfjak9krl2Y/gaFimaxDusWelYM2TGS/rbM20BePYvY5zDagOCvUN9kv4KNlIm3IyS2WyD65fHV5uMF8Xgp/yR5NC5vzFjbdAOg30CnXBnPJSqWz3iBJCh0B8tOOLLNacU3cS6kMPAEuSyJLZ7bqD2aZPQSOF2CSwvi0JkrZXmcV7dQFcF+XrIjuLTDyC9zWNCvTq4r8O0AgpJFFVuHBJCTMmmAF/vVgkqjcRVol1ujKuUgd+Dg97ACPS9aOy2WyCaQuphcf5jTrnRMTZHMoaeYEWQ21nJggm0NJMyfIaqjlxEwArO1R1u4ZQ7YAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		.s0 { fill: none;stroke: #494949;stroke-width: 3 } 
+	</style>
+	<path id="Layer" class="s0" d="m31 60.5c-16.3 0-29.5-13.2-29.5-29.5 0-16.3 13.2-29.5 29.5-29.5 16.3 0 29.5 13.2 29.5 29.5 0 16.3-13.2 29.5-29.5 29.5z"/>
+	<path id="Layer" class="s0" d="m8.9 51.9l43-43"/>
+	<use id="Layer" href="#img1" transform="matrix(1,0,0,1,9,9)"/>
+</svg>

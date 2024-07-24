@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { navLinks } from '../constants/index'
 
 const Header = () => {
-  const navLinks = [
-    { to: '/home', text: 'Home' },
-    { to: '/about', text: 'About' },
-    { to: '/menu', text: 'Menu' },
-    { to: '/reservations', text: 'Reservations' },
-    { to: '/order', text: 'Order online' },
-    { to: '/login', text: 'Login' }
-  ];
-
   const [visibleNav, setVisibleNav] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavClick = (to) => {
+    setVisibleNav(false);
+    navigate(to);
+  }
 
   return (
     <header className='container mx-auto p-4'>
       <nav className="flex items-center justify-between flex-wrap">
         <Nav.Item>
-          <Nav.Link as={Link} to="/home" className="flex items-center flex-shrink-0 mr-6 ">
-            <img className="mr-2" src="Logo.svg" alt="lemon-logo" />
+          <Nav.Link as={Link} to="/" className="flex items-center flex-shrink-0 mr-6 ">
+            <img className="mr-2" src="logo.svg" alt="lemon-logo" />
           </Nav.Link>
         </Nav.Item>
         <div className={`flex items-center lg:flex lg:items-center lg:w-auto`}>
           <div className={`text-sm hidden lg:flex lg:flex-grow justify-end`}>
             {navLinks.map((link) => (
               <Nav.Item key={link.to} className='mr-5'>
-                <Nav.Link as={Link} to={link.to} className='block lg:inline-block px-2 rounded-md lg:mt-0 bg-white text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none'>
+                <Nav.Link as={Link} 
+                to={link.to} 
+                className='block lg:inline-block px-2 rounded-md lg:mt-0 bg-white text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none'
+                onClick={() => handleNavClick(link.to)}
+                >
                   {link.text}
                 </Nav.Link>
               </Nav.Item>
@@ -47,7 +49,11 @@ const Header = () => {
         <div className={`text-sm flex-col lg:hidden lg:flex-grow w-full justify-end ${visibleNav ? 'flex': 'hidden'}`}>
             {navLinks.map((link) => (
               <Nav.Item key={link.to} className='text-center'>
-                <Nav.Link as={Link} to={link.to} className='block text-xl text-dark hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none'>
+                <Nav.Link as={Link} 
+                to={link.to} 
+                className='block text-xl text-dark hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none'
+                onClick={() => handleNavClick(link.to)}
+                >
                   {link.text}
                 </Nav.Link>
               </Nav.Item>

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import React from 'react'
 
-const Button = ({type, link, title}) => {
-    const classes = type === 'primary' ? 
+const Button = ({action, link, title}) => {
+    const classes = action === 'primary' ? 
     'bg-yellow text-white border border-solid border-yellow hover:bg-green hover:text-yellow' :
     'border border-solid border-dark text-dark hover:border-yellow hover:text-yellow'
 
