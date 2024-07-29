@@ -5,6 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    screens: {
+      'xs': '480px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '992px',
+      '2xl': '1440px'
+    },
     colors: {
       'green': '#495E57',
       'yellow': '#F4CE14',

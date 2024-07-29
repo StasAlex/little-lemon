@@ -38,7 +38,7 @@ const BookingForm = () => {
           <option>Birthday</option>
           <option>Anniversary</option>
       </select>
-      <Button type="submit" action="primary" link="#" title="Make Your reservation"/>
+      <Button action="primary" link="#" title="Make Your reservation"/>
     </form>
   );
 };

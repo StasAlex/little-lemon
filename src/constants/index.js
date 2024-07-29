@@ -35,3 +35,30 @@ export const icons = [
     { title: 'no-smokings-icon', img: './icons/booking/no-smoking.svg' },
     { title: 'no-cards-icon', img: './icons/booking/no-cards.svg' }
   ];
+
+export const testimonials = [
+    {
+        name: 'John Doe',
+        image: './review/reviewer1.png',
+        rating: '5',
+        review: 'This is an amazing place! Highly recommended.'
+    },
+    {
+      name: 'Jane Smith',
+      image: './review/reviewer2.png',
+      rating: '4',
+      review: 'Great food and excellent service.'
+    },
+    {
+      name: "Amanda",
+      image: './review/reviewer3.png',
+      rating: '5',
+      review:'Amazing food. The service was a bit slow, but overall a fantastic experience.'
+    },
+    {
+      name: "Brain",
+      image: './review/reviewer4.png',
+      rating: '4',
+      review: 'The pasta was delicious, but the portions were a bit small for the price. Cozy atmosphere.'
+    }
+]
