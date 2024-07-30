@@ -4,8 +4,8 @@ import { testimonials } from '../constants/index.js';
 
 function Testimonials() {
   return (
-    <section className="px-4 py-6">
-      <h2 className="text-primary font-medium text-3xl mb-3">Testimonials</h2>
+    <section className="container mx-auto px-4 mb-10 lg:mb-14">
+      <h2 className="text-primary text-3xl md:text-5xl font-semibold mb-5 lg:mb-10 xs:mb-0 mx-2">Testimonials</h2>
       <div className="flex flex-wrap">
         {testimonials.map(item => (
           <Testimonial
