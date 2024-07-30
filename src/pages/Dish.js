@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { cards } from '../constants/index';
-import Specials from  '../components/Specials'
+import Specials from  '../sections/Specials'
 
 const Dish = () => {
   const { slug } = useParams();

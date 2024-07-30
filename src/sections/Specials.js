@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../utils/Button';
-import Card from './Card';
+import Card from '../components/Card';
 import { cards } from '../constants/index.js';
 
 const Specials = () => {
