@@ -51,6 +51,7 @@ const Header = () => {
                     <span>Hello, </span>
                     <span
                       className='block lg:inline-block px-2 rounded-md lg:mt-0 text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none cursor-pointer'
+                      title="Logout"
                       onClick={handleLogout}
                     >
                       {username}
@@ -103,6 +104,7 @@ const Header = () => {
                     <span>Hello, </span>
                     <span
                       className='block lg:inline-block px-2 rounded-md lg:mt-0 text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none cursor-pointer'
+                      title="Logout"
                       onClick={handleLogout}
                     >
                       {username}
