@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import AboutPage from './pages/About';
 import Menu from './pages/Menu';
 import Order from './pages/Order';
+import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import Booking from './pages/Booking';
 import NotFound from './pages/NotFound';
@@ -25,10 +26,12 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/:link" element={<AboutPage />} />
               <Route path="/menu" element={<Menu />} />
-              <Route path="/order/:dish" element={<Order />} />
+              <Route path="/order" element={<Order />} />
+              <Route path="/order/:slug" element={<OrderOnline />} />
               <Route path="/login" element={<Login />} />
               <Route path="/booking" element={<Booking />} />
               <Route path="/dishes/:slug" element={<Dish />} />
+              <Route path="/menu/dishes/:slug" element={<Dish />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { cards } from '../constants/index';
-import Specials from  '../sections/Specials'
+import Specials from  '../sections/Specials';
 
 const Dish = () => {
-  const { slug } = useParams();
+  const params = useParams();
   const [filteredCard, setFilteredCard] = useState({});
 
   useEffect(() => {
-    const card = cards.find(card => card.link === slug);
+    const card = cards.find(card => card.link === params.slug);
     setFilteredCard(card || {});
 
-  }, [slug])
+  }, [params])
 
   return (
     <div className='container mx-auto p-4'>
-      {slug !== 'order' ?
+      {params.slug !== 'order' ?
       <div className='flex flex-col sm:flex-row'>
-        <img src={`./${filteredCard.img}`} alt={filteredCard.title} />
+        <img src={`${filteredCard.img}`} alt={filteredCard.title} />
         <div className='py-5 flex flex-wrap items-center justify-between'>
               <h3 className='font-secondary text-2xl text-black'>{filteredCard.title}</h3>
               <span className='text-coral text-base font-bold'>${filteredCard.price}</span>
@@ -34,7 +34,6 @@ const Dish = () => {
       :
       <Specials/>
       }
-      
     </div>
   );
 };

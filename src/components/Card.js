@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 const Card = ({card}) => {
   return (
     <div className='flex flex-col mb-5 basis-[100%] xs:basis-[49%] lg:basis-[30%] h-auto'>
-      <Link to={`dishes/${card.link}`}>
+      <Link to={`/menu/dishes/${card.link}`}>
         <img className='w-full object-cover border border-solid border-black rounded-t-2xl lg:h-52' src={card.img} alt={card.title} />
       </Link>
       <div className='p-3 flex grow justify-between items-baseline flex-wrap bg-grey'>
-            <Link to={`dishes/${card.link}`} className='grow-0'>
+            <Link to={`/menu/dishes/${card.link}`} className='grow-0'>
               <h3 className='font-secondary text-2xl text-black'>{card.title}</h3>
             </Link>
             <span className='text-coral text-base font-bold grow-0'>${card.price}</span>

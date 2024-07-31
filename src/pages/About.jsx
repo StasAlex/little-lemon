@@ -5,11 +5,9 @@ import About from '../sections/About'
 const AboutPage = () => {
   const { link } = useParams();
 
-  console.log(link)
-
   return (
     <section className='container px-4 mx-auto mt-5 lg:mt-20'>
-      {link === 'about' ?
+      {link === 'about' && link !== 'order' ?
         <About isButtonHide={true}/>
         : <About/>
       }

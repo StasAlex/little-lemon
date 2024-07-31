@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom';
-import { navLinks } from '../constants/index'
+import { navLinks } from '../constants/index';
+import Logo from './assets/logo.svg'
 
 const Header = () => {
   const [visibleNav, setVisibleNav] = useState(false);
@@ -17,7 +18,7 @@ const Header = () => {
       <nav className="flex items-center justify-between flex-wrap">
         <Nav.Item>
           <Nav.Link as={Link} to="/" className="flex items-center flex-shrink-0 mr-6 ">
-            <img className="mr-2" src="./logo.svg" alt="lemon-logo" />
+            <img className="mr-2" src={Logo} alt="lemon-logo" />
           </Nav.Link>
         </Nav.Item>
         <div className={`flex items-center lg:flex lg:items-center lg:w-auto`}>
