@@ -4,7 +4,6 @@ export const navLinks = [
     { to: '/menu', text: 'Menu' },
     { to: '/booking', text: 'Book table' },
     { to: '/order', text: 'Order online' },
-    { to: '/login', text: 'Login' }
   ];
 
 export const cards = [
@@ -62,3 +61,5 @@ export const testimonials = [
       review: 'The pasta was delicious, but the portions were a bit small for the price. Cozy atmosphere.'
     }
 ]
+
+export const toastConfig = {theme: "success", position: 'top-right', maxVisibleToasts: 5};

@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.my-toast {
+  background-color: #495E57;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 3px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

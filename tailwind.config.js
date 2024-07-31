@@ -19,7 +19,8 @@ module.exports = {
       'black': '#000000',
       'dark': '#333333',
       'grey': '#EDEFEE',
-      'coral': '#EE9972'
+      'coral': '#EE9972',
+      'red-500': 'rgb(239, 68, 68)'
     },
     fontFamily: {
       primary: ['Karla', 'sans-serif'],
