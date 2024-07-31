@@ -23,7 +23,7 @@ function App() {
           <main className='flex flex-grow flex-col w-full'>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutPage />} />
+              <Route path="/:link" element={<AboutPage />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/order/:dish" element={<Order />} />
               <Route path="/login" element={<Login />} />
