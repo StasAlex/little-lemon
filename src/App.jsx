@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import Footer from './components/Footer';
+import Footer from './sections/Footer';
 import Home from './pages/Home';
 import AboutPage from './pages/About';
 import Menu from './pages/Menu';
@@ -20,7 +20,7 @@ function App() {
         <main className='flex flex-grow flex-col w-full'>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/:slug" element={<AboutPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/order/:dish" element={<Order />} />
             <Route path="/login" element={<Login />} />

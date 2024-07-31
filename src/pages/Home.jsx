@@ -10,7 +10,7 @@ const Home = () => {
       <Hero/>
       <Specials/>
       <Testimonials/>
-      <About/>
+      <About isButtonHide={false} />
     </div>
   )
 }
