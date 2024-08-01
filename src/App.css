@@ -1,18 +1,15 @@
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,16 +20,35 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #61dafb;
 }
-
 .my-toast {
   background-color: #495E57;
   padding: 10px 20px;
   color: #fff;
   border-radius: 3px;
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
+div.select__control {
+  background-color: #EDEFEE;
+  border-color: #efedef;
+  font-weight: 700;
+  height: 40px;
+  border-radius: 16px;
+  width: 100%;
+}
+div.select-container {
+  width: 100%;
+}
+div.select__single-value,
+div.select__placeholder {
+  color: #495E57;
+}
+span.select__indicator-separator{
+  display: none;
 }
 
 @keyframes App-logo-spin {

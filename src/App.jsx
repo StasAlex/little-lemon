@@ -11,6 +11,7 @@ import Order from './pages/Order';
 import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import Booking from './pages/Booking';
+import Success from './pages/Success';
 import NotFound from './pages/NotFound';
 import Dish from './pages/Dish';
 import { ToastContainer } from 'react-toastify';
@@ -30,6 +31,7 @@ function App() {
               <Route path="/order/:slug" element={<OrderOnline />} />
               <Route path="/login" element={<Login />} />
               <Route path="/booking" element={<Booking />} />
+              <Route path="/success" element={<Success />} />
               <Route path="/dishes/:slug" element={<Dish />} />
               <Route path="/menu/dishes/:slug" element={<Dish />} />
               <Route path="*" element={<NotFound />} />
