@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
-import { navLinks } from '../constants/index'
+import { navLinks } from '../constants/index';
+import { address } from '../constants/index';
+import { socials } from '../constants/index';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -38,9 +40,33 @@ const Footer = () => {
           </div>
           <div className='w-full xs:w-[49%] lg:w-[24%]'>
             <h3 className='text-lg text-green font-bold mb-2'>Contacts</h3>
+            <ul className={`text-sm`}>
+              {address.map(string => (
+                <li key={string.text} className='mb-1 last:mb-0 -ml-2'>
+                  {string.context !== 'phone' ? 
+                    <span className='text-black hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none px-2 rounded-lg mb-0'>
+                      {string.text}
+                    </span>
+                    :
+                   <a href={`tel:${string.text.replace(/[\s()-]/g, '')}`} className='text-black hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none px-2 rounded-lg mb-0'>
+                    Phone: {string.text}
+                  </a>
+                   }
+                </li>
+              ))}
+            </ul>
           </div>
           <div className='w-full xs:w-[49%] lg:w-[24%]'>
             <h3 className='text-lg text-green font-bold mb-2'>Social</h3>
+            <ul className="flex">
+              {socials.map((item) => (
+                <li key={item.img} className='mr-4 last:mr-0'>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" >
+                    <img className='w-7' src={item.img} alt='social-icon'/>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

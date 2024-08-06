@@ -3,7 +3,7 @@ import Button from '../utils/Button'
 
 const Hero = () => {
   return (
-    <section className='bg-green text-white flex-grow mb-10 lg:mb-32'>
+    <section className='bg-green text-white flex-grow mb-7 sm:mb-[80px] lg:mb-32'>
         <div className="container px-4 flex flex-col sm:flex sm:flex-row mx-auto h-full">
         <div className='px-4 py-6 sm:basis-1/2 sm:flex sm:flex-col sm:justify-center'>
             <h1 className='font-primary text-yellow text-6xl font-medium'>Little Lemon</h1>

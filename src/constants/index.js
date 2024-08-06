@@ -6,6 +6,20 @@ export const navLinks = [
     { to: '/order', text: 'Order online' },
   ];
 
+  export const address = [
+    { context: 'name', text: 'Little Lemon Restaurant' },
+    { context: 'street', text: '123 Main Street.' },
+    { context: 'city', text: 'Chicago, IL 60601' },
+    { context: 'phone', text: '(312) 555-1234' }
+  ];
+
+  export const socials = [
+    {link: 'https://facebook.com', img: '/icons/social/facebook.png' },
+    {link: 'https://instagram.com', img: '/icons/social/instagram.png' },
+    {link: 'https://youtube.com', img: '/icons/social/youtube.ico' },
+    {link: 'https://pinterest.com', img: '/icons/social/pinterest.png' }
+  ];
+
 export const cards = [
     {
         img: '/cards/greek-salad.jpg',
