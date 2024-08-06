@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
+import BookingTop from '../sections/BookingTop';
+import SuccessSection from '../sections/SuccessSection';
 
 const Success = () => {
   return (
-    <div>
-      <h1>
-        The table has been reserved successfully!
-        You will get a confirmation and reminder witht he contact method selected by you
-      </h1>
-    </div>
+    <>
+      <BookingTop isIcons={false} title="Table Reserved"/>
+      <SuccessSection/>
+    </>
   )
 }
 
