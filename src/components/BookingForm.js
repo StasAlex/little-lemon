@@ -1,18 +1,25 @@
 import React, { useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../utils/Button';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
+import Button from '../utils/Button';
+import { fetchAPI, submitAPI } from '../functions/index';
 import dateIcon from '../assets/icons/date-icon.svg';
 import persons from '../assets/icons/persons.svg';
-import {fetchAPI, submitAPI} from '../functions/index'
+import phoneReminderIcon from '../assets/icons/phone-reminder.svg';
+import emailReminderIcon from '../assets/icons/email-reminder.svg';
+import reminderChecked from '../assets/icons/reminder-checked.svg'
+import reminderUnchecked from '../assets/icons/reminder-unchecked.svg'
 
 // Initial state for useReducer
 const initialState = {
   date: new Date(),
   time: null,
+  phone: null,
+  email: null,
   occasion: null,
+  reminder: '',
   guests: 1,
   errors: {},
   availableTimes: [],
@@ -25,8 +32,14 @@ const reducer = (state, action) => {
       return { ...state, date: action.payload };
     case 'SET_TIME':
       return { ...state, time: action.payload };
+    case 'SET_PHONE':
+      return { ...state, phone: action.payload };
+    case 'SET_EMAIL':
+      return { ...state, email: action.payload };
     case 'SET_OCCASION':
       return { ...state, occasion: action.payload };
+    case 'SET_REMINDER':
+      return { ...state, reminder: action.payload };
     case 'SET_GUESTS':
       return { ...state, guests: action.payload };
     case 'SET_ERRORS':
@@ -63,31 +76,48 @@ const BookingForm = () => {
     let tempErrors = {};
     tempErrors.date = state.date ? "" : "Date is required.";
     tempErrors.time = state.time ? "" : "Time is required.";
+    tempErrors.phone = state.reminder === "remind-phone" && state.phone !== null ? "" : "Phone is required.";
+    tempErrors.email = state.reminder === "remind-email" && state.email !== null ? "" : "Email is required.";
     tempErrors.occasion = state.occasion ? "" : "Occasion is required.";
     tempErrors.guests = state.guests >= 1 && state.guests <= 10 ? "" : "Number of guests must be between 1 and 10.";
+    if (state.reminder.length === 0) {
+      tempErrors.reminder = "You should pick how to remind you";
+      tempErrors.phone =  "";
+      tempErrors.email = "";
+    }
+    if (state.reminder === 'remind-phone') {
+      tempErrors.email = "";
+    }
+    if (state.reminder === 'remind-email') {
+      tempErrors.phone = "";
+    }
+
     dispatch({ type: 'SET_ERRORS', payload: tempErrors });
     return Object.values(tempErrors).every(x => x === "");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (validate()) {
       // Submit form data
       const formData = {
         date: state.date,
-        time: state.time,
-        occasion: state.occasion,
+        time: state.time.value,
+        phone: state.phone,
+        email: state.email,
+        occasion: state.occasion.value,
         guests: state.guests
       };
       if (submitAPI(formData)) {
         console.log("Form submitted successfully!");
-        navigate('/success')
+        navigate('/success');
       }
     }
   };
 
   return (
-    <form className='mb-5'>
+    <form className='mb-5 sm:max-w-[50%]'>
       <div className='flex flex-col mb-3'>
         <label htmlFor="res-date" className='hidden'>Choose date</label>
         <div className='flex items-center'>
@@ -103,7 +133,7 @@ const BookingForm = () => {
 
       <div className='flex flex-col mb-3'>
         <label htmlFor="booking-time" className='hidden'>Choose time</label>
-        <Select 
+        <Select
           id="booking-time"
           className="select-container"
           classNamePrefix="select"
@@ -134,7 +164,75 @@ const BookingForm = () => {
       </div>
 
       <div className='flex flex-col mb-5'>
-        <label htmlFor="occasion" className='hidden'>Occasion</label>
+        <h3 className='text-2xl font-bold text-center mb-3'>Confirmation & Reminder</h3>
+        <div className='flex flex-wrap'>
+          <label htmlFor="phone-reminder" className='px-9 py-3 rounded-2xl bg-grey mr-5 w-[130px] flex items-center justify-center relative'>
+            <img src={phoneReminderIcon} alt="phone-remind-icon" />
+            <input
+              type="radio"
+              id="phone-reminder"
+              name="reminder"
+              value='remind-phone'
+              checked={state.reminder === 'remind-phone'}
+              onChange={() => dispatch({ type: 'SET_REMINDER', payload: 'remind-phone' })}
+              className='opacity-0'
+            />
+            {state.reminder === 'remind-phone' ?
+              <img className='absolute bottom-2 right-2' src={reminderChecked} alt="phone-remind-icon" /> :
+            <img className='absolute bottom-2 right-2'  src={reminderUnchecked} alt="phone-remind-icon" />
+            }
+          </label>
+          <label htmlFor="email-reminder" className='px-9 py-3 rounded-2xl bg-grey w-[130px] flex items-center justify-center relative'>
+            <img src={emailReminderIcon} alt="email-icon" />
+            <input
+              type="radio"
+              id="email-reminder"
+              name="reminder"
+              value='remind-email'
+              checked={state.reminder === 'remind-email'}
+              onChange={() => dispatch({ type: 'SET_REMINDER', payload: 'remind-email' })}
+              className='opacity-0'
+            />
+            {state.reminder === 'remind-email' ?
+              <img className='absolute bottom-2 right-2' src={reminderChecked} alt="phone-remind-icon" /> :
+            <img className='absolute bottom-2 right-2' src={reminderUnchecked} alt="phone-remind-icon" />
+            }
+          </label>
+        </div>
+        {state.errors.reminder && <span className="text-red-500 text-sm">{state.errors.reminder}</span>}
+        {state.reminder === 'remind-phone' ?
+          <div>
+             <input
+              type="text"
+              id="phone"
+              placeholder='Your phone'
+              required={state.reminder === 'remind-phone'}
+              onInput={(e) => dispatch({ type: 'SET_PHONE', payload: e.target.value })}
+              className='w-full mt-5 bg-grey text-green font-bold text-base rounded-2xl h-10 p-2 placeholder-shown:text-green placeholder:text-green placeholder:font-bold'
+            />
+            {state.reminder === 'remind-phone' && state.errors.phone && <span className="text-red-500 text-sm">{state.errors.phone}</span>}
+          </div>
+            :
+            null
+            }
+         {state.reminder === 'remind-email' ?
+          <div>
+             <input
+              type="email"
+              id="email"
+              placeholder='Your email'
+              required={state.reminder === 'remind-email'}
+              onInput={(e) => dispatch({ type: 'SET_EMAIL', payload: e.target.value })}
+              className='w-full mt-5 bg-grey text-green font-bold text-base rounded-2xl h-10 p-2 placeholder-shown:text-green placeholder:text-green placeholder:font-bold'
+            />
+            {state.reminder === 'remind-email' && state.errors.email && <span className="text-red-500 text-sm">{state.errors.email}</span>}
+          </div>
+            :
+            null
+            }
+      </div>
+
+      <div className='flex flex-col mb-5'>
         <Select
           id="occasion"
           className="select-container"
@@ -147,7 +245,7 @@ const BookingForm = () => {
         {state.errors.occasion && <span className="text-red-500 text-sm">{state.errors.occasion}</span>}
       </div>
 
-      <Button action="primary" link="#" title="Make Your reservation" position='center' onClick={handleSubmit}/>
+      <Button action="primary" link="#" title="Reserve a table" position='center' onClick={handleSubmit} />
     </form>
   );
 };
