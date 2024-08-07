@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom';
 import { navLinks } from '../constants/index';
 import { useAuth } from '../context/AuthContext';
+import { CartContext } from '../context/CartContext';
 import toast from 'react-simple-toasts';
 import 'react-simple-toasts/dist/theme/success.css';
 import {toastConfig} from '../constants/index';
+import logo from '../assets/logo.svg';
+import cartIcon from '../assets/icons/cart/cart.svg';
+import cartFullIcon from '../assets/icons/cart/cart-full.svg';
 
 const Header = () => {
   const [visibleNav, setVisibleNav] = useState(false);
   const { isLoggedIn, username, logout } = useAuth();
+  const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handleNavClick = (to) => {
@@ -27,7 +32,7 @@ const Header = () => {
       <nav className="flex items-center justify-between flex-wrap">
         <Nav.Item>
           <Nav.Link as={Link} to="/" className="flex items-center flex-shrink-0 mr-6">
-            <img className="mr-2" src="logo.svg" alt="lemon-logo" />
+            <img className="mr-2" src={logo} alt="lemon-logo" />
           </Nav.Link>
         </Nav.Item>
         <div className={`flex items-center lg:flex lg:items-center lg:w-auto`}>
@@ -40,7 +45,7 @@ const Header = () => {
                   className='block lg:inline-block px-2 rounded-md lg:mt-0 bg-white text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none'
                   onClick={() => handleNavClick(link.to)}
                 >
-                  {link.text}
+                   <span>{link.text}</span>
                 </Nav.Link>
               </Nav.Item>
             ))}
@@ -48,7 +53,7 @@ const Header = () => {
               <Nav.Item className='mr-5'>
                 {username && (
                   <span>
-                    <span>Hello, </span>
+                    <span className='hidden lg:inline-block'>Hello, </span>
                     <span
                       className='block lg:inline-block px-2 rounded-md lg:mt-0 text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none cursor-pointer'
                       title="Logout"
@@ -71,6 +76,11 @@ const Header = () => {
                 </Nav.Link>
               </Nav.Item>
             )}
+           <Link to='/cart'>
+            {cartItems.length ? 
+            <img src={cartFullIcon} alt="cart-icon" /> :
+            <img src={cartIcon} alt="cart-icon" />}
+           </Link>
           </div>
           <div className={`block lg:hidden`}>
             <button
@@ -98,18 +108,18 @@ const Header = () => {
             </Nav.Item>
           ))}
           {isLoggedIn ? (
-              <Nav.Item className='mr-5'>
+              <Nav.Item>
                 {username && (
-                  <span>
-                    <span>Hello, </span>
+                  <>
+                   <span className='hidden lg:inline-block text-dark'>Hello, </span>
                     <span
-                      className='block lg:inline-block px-2 rounded-md lg:mt-0 text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none cursor-pointer'
+                      className='block lg:inline-block text-center text-xl text-dark rounded-md lg:mt-0 hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none cursor-pointer'
                       title="Logout"
                       onClick={handleLogout}
                     >
                       {username}
                     </span>
-                  </span>
+                  </>
                 )}
               </Nav.Item>
             ) : (
@@ -117,7 +127,7 @@ const Header = () => {
                 <Nav.Link
                   as={Link}
                   to="/login"
-                  className='block lg:inline-block px-2 rounded-md lg:mt-0 bg-white text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none'
+                  className='block lg:inline-block text-center text-xl rounded-md lg:mt-0 text-dark hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none cursor-pointer'
                   onClick={() => handleNavClick('/login')}
                 >
                   Login

@@ -1,7 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useContext} from 'react';
+import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import toast from 'react-simple-toasts';
+import {toastConfig} from '../constants/index';
+import Button from '../utils/Button';
 
 const Card = ({card}) => {
+  const { addToCart } = useContext(CartContext);
+  const handleDelivery = () => {
+    addToCart(card);
+    toast(`${card.title} successfully added to cart`, toastConfig);
+  }
   return (
     <div className='flex flex-col mb-5 basis-[100%] xs:basis-[49%] lg:basis-[30%] h-auto'>
       <Link to={`/menu/dishes/${card.link}`}>
@@ -13,12 +22,10 @@ const Card = ({card}) => {
             </Link>
             <span className='text-coral text-base font-bold grow-0'>${card.price}</span>
             <p className='mb-2 text-green grow'>{card.description}</p>
-            <Link to={`/order/${card.link}`}
-            className="mt-auto group flex items-center text-dark hover:text-white hover:bg-green px-2 rounded-md transition-all ease-in duration-300">
-              <span className="mr-2">Order a delivery</span>
+            <Button action='primary' title='Order a delivery' onClick={handleDelivery}>
               <img src="icons/order.svg" alt="order-icon" className='block group-hover:hidden'/>
               <img src="icons/order-hover.svg" alt="order-hover-icon" className='hidden group-hover:block'/>
-            </Link>
+            </Button>
       </div>
     </div>
   )

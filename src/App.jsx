@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import './App.css';
 import Header from './components/Header';
 import Footer from './sections/Footer';
@@ -14,11 +16,15 @@ import Booking from './pages/Booking';
 import Success from './pages/Success';
 import NotFound from './pages/NotFound';
 import Dish from './pages/Dish';
-import { ToastContainer } from 'react-toastify';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import SuccessCheckout from './pages/SuccessCheckout';
+
 
 function App() {
   return (
     <AuthProvider>
+      <CartProvider>
       <Router>
         <div className='flex flex-col min-h-screen font-primary'>
           <Header />
@@ -32,8 +38,11 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/booking" element={<Booking />} />
               <Route path="/success" element={<Success />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/dishes/:slug" element={<Dish />} />
               <Route path="/menu/dishes/:slug" element={<Dish />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/success-checkout" element={<SuccessCheckout />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
@@ -51,6 +60,7 @@ function App() {
           />
         </div>
       </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }

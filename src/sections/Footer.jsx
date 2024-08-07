@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { navLinks } from '../constants/index';
 import { address } from '../constants/index';
 import { socials } from '../constants/index';
+import logo from '../assets/logo.svg';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -12,16 +13,16 @@ const Footer = () => {
     <footer className="bg-grey">
       <div className='container mx-auto p-4'>
         <div className="flex flex-wrap">
-          <div className='w-full xs:w-[49%] lg:w-[24%]'>
+          <div className='w-full xs:w-[49%] lg:w-[24%] mb-2'>
             <Nav.Item>
-              <Nav.Link as={Link} to="/" className="flex items-center flex-shrink-0 mr-6">
-                <img className="mr-2" src="./logo.svg" alt="lemon-logo" />
+              <Nav.Link as={Link} to="/" className="flex items-center justify-center xs:justify-start flex-shrink-0 mr-6">
+                <img src={logo} alt="lemon-logo" />
               </Nav.Link>
             </Nav.Item>
             </div>
           <div className='w-full xs:w-[49%] lg:w-[24%]'>
-            <h3 className='text-lg text-green font-bold mb-2'>Navigation</h3>
-            <ul className={`text-sm`}>
+            <h3 className='text-lg text-green font-bold mb-2 text-center xs:text-left'>Navigation</h3>
+            <ul className={`text-sm text-center xs:text-left mb-3`}>
             {navLinks.map((link) => (
               link.to !== '/' ? (
                 <li key={link.to} className='mb-1 last:mb-0 -ml-2'>
@@ -39,8 +40,8 @@ const Footer = () => {
             </ul>
           </div>
           <div className='w-full xs:w-[49%] lg:w-[24%]'>
-            <h3 className='text-lg text-green font-bold mb-2'>Contacts</h3>
-            <ul className={`text-sm`}>
+            <h3 className='text-lg text-green text-center xs:text-left font-bold mb-2'>Contacts</h3>
+            <ul className={`text-sm text-center xs:text-left mb-3`}>
               {address.map(string => (
                 <li key={string.text} className='mb-1 last:mb-0 -ml-2'>
                   {string.context !== 'phone' ? 
@@ -56,9 +57,9 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className='w-full xs:w-[49%] lg:w-[24%]'>
+          <div className='w-full xs:w-[49%] lg:w-[24%] text-center xs:text-left'>
             <h3 className='text-lg text-green font-bold mb-2'>Social</h3>
-            <ul className="flex">
+            <ul className="flex justify-center xs:justify-start">
               {socials.map((item) => (
                 <li key={item.img} className='mr-4 last:mr-0'>
                   <a href={item.link} target="_blank" rel="noopener noreferrer" >

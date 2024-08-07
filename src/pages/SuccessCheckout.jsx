@@ -5,8 +5,8 @@ import SuccessSection from '../sections/SuccessSection';
 const Success = () => {
   return (
     <>
-      <BookingTop isIcons={false} title="Table Reserved"/>
-      <SuccessSection title="The table has been reserved successfully!"/>
+      <BookingTop isIcons={false} title="Order Submitted"/>
+      <SuccessSection title='Dishes has been ordered successfully!'/>
     </>
   )
 }

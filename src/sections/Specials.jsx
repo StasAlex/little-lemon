@@ -3,6 +3,7 @@ import Button from '../utils/Button';
 import MenuList from '../components/MenuList';
 
 const Specials = () => {
+
   return (
     <section className="container px-4 mx-auto mb-10 lg:mb-14">
         <div className='flex items-center justify-center sm:justify-between flex-wrap mb-5 lg:mb-10'>
