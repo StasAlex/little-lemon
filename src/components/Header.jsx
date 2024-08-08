@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { CartContext } from '../context/CartContext';
 import toast from 'react-simple-toasts';
 import 'react-simple-toasts/dist/theme/success.css';
-import {toastConfig} from '../constants/index';
+import { toastConfig } from '../constants/index';
 import logo from '../assets/logo.svg';
 import cartIcon from '../assets/icons/cart/cart.svg';
 import cartFullIcon from '../assets/icons/cart/cart-full.svg';
@@ -15,6 +15,7 @@ const Header = () => {
   const [visibleNav, setVisibleNav] = useState(false);
   const { isLoggedIn, username, logout } = useAuth();
   const { cartItems } = useContext(CartContext);
+  const totalItems = cartItems.reduce((total, item) => total + item.qty, 0);
   const navigate = useNavigate();
 
   const handleNavClick = (to) => {
@@ -28,8 +29,8 @@ const Header = () => {
   };
 
   return (
-    <header className='container mx-auto p-4'>
-      <nav className="flex items-center justify-between flex-wrap">
+    <header className='sticky top-0 bg-white z-[1]'>
+      <nav className="flex items-center justify-between flex-wrap container mx-auto p-4 ">
         <Nav.Item>
           <Nav.Link as={Link} to="/" className="flex items-center flex-shrink-0 mr-6">
             <img className="mr-2" src={logo} alt="lemon-logo" />
@@ -45,7 +46,7 @@ const Header = () => {
                   className='block lg:inline-block px-2 rounded-md lg:mt-0 bg-white text-green hover:text-white hover:bg-green hover:transition-all duration-300 mr-4 focus-visible:outline-none'
                   onClick={() => handleNavClick(link.to)}
                 >
-                   <span>{link.text}</span>
+                  <span>{link.text}</span>
                 </Nav.Link>
               </Nav.Item>
             ))}
@@ -76,13 +77,24 @@ const Header = () => {
                 </Nav.Link>
               </Nav.Item>
             )}
-           <Link to='/cart'>
-            {cartItems.length ? 
-            <img src={cartFullIcon} alt="cart-icon" /> :
-            <img src={cartIcon} alt="cart-icon" />}
-           </Link>
+            <Link to='/cart' className='mr-3 relative'>
+              <img src={totalItems > 0 ? cartFullIcon : cartIcon} alt="cart-icon" />
+              {totalItems > 0 && (
+                <span className='absolute -top-2 -right-1 bg-yellow text-green rounded-full px-1 text-xs'>
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </div>
-          <div className={`block lg:hidden`}>
+          <div className={`flex items-center lg:hidden`}>
+            <Link to='/cart' className='mr-5 relative'>
+              <img src={totalItems > 0 ? cartFullIcon : cartIcon} alt="cart-icon" />
+              {totalItems > 0 && (
+                <span className='absolute -top-2 -right-1 bg-yellow text-green rounded-full px-1 text-xs'>
+                  {totalItems}
+                </span>
+              )}
+            </Link>
             <button
               className="flex items-center px-3 py-2 border hover:fill-white rounded text-green border-green hover:text-green hover:bg-green hover:transition-all duration-300"
               onClick={() => setVisibleNav(!visibleNav)}
@@ -108,32 +120,32 @@ const Header = () => {
             </Nav.Item>
           ))}
           {isLoggedIn ? (
-              <Nav.Item>
-                {username && (
-                  <>
-                   <span className='hidden lg:inline-block text-dark'>Hello, </span>
-                    <span
-                      className='block lg:inline-block text-center text-xl text-dark rounded-md lg:mt-0 hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none cursor-pointer'
-                      title="Logout"
-                      onClick={handleLogout}
-                    >
-                      {username}
-                    </span>
-                  </>
-                )}
-              </Nav.Item>
-            ) : (
-              <Nav.Item className='mr-5'>
-                <Nav.Link
-                  as={Link}
-                  to="/login"
-                  className='block lg:inline-block text-center text-xl rounded-md lg:mt-0 text-dark hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none cursor-pointer'
-                  onClick={() => handleNavClick('/login')}
-                >
-                  Login
-                </Nav.Link>
-              </Nav.Item>
-            )}
+            <Nav.Item>
+              {username && (
+                <>
+                  <span className='hidden lg:inline-block text-dark'>Hello, </span>
+                  <span
+                    className='block lg:inline-block text-center text-xl text-dark rounded-md lg:mt-0 hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none cursor-pointer'
+                    title="Logout"
+                    onClick={handleLogout}
+                  >
+                    {username}
+                  </span>
+                </>
+              )}
+            </Nav.Item>
+          ) : (
+            <Nav.Item className='mr-5'>
+              <Nav.Link
+                as={Link}
+                to="/login"
+                className='block lg:inline-block text-center text-xl rounded-md lg:mt-0 text-dark hover:text-white hover:bg-green hover:transition-all duration-300 focus-visible:outline-none cursor-pointer'
+                onClick={() => handleNavClick('/login')}
+              >
+                Login
+              </Nav.Link>
+            </Nav.Item>
+          )}
         </div>
       </nav>
     </header>

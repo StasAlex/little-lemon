@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../utils/Button';
 
 const Checkout = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, updateCartItem } = useContext(CartContext);
+
   const navigate = useNavigate();
   const [deliveryDetails, setDeliveryDetails] = useState({
     name: '',
@@ -36,9 +37,17 @@ const Checkout = () => {
       setErrors(validationErrors);
       return;
     }
-    console.log('Order submitted', { cartItems, deliveryDetails });
-    navigate('/success-checkout');
+  
+    // Filter cart items to only include items with qty > 0
+    const submittedCartItems = cartItems.filter(item => item.qty > 0);
+  
+    console.log('Order submitted', { submittedCartItems, deliveryDetails });
+  
+    navigate('/success-checkout', { state: { submittedCartItems } });
+  
+    cartItems.forEach(item => updateCartItem(item.id, 0));
   };
+  
 
   const validateForm = () => {
     const newErrors = {};
@@ -91,7 +100,7 @@ const Checkout = () => {
         <div className='basis-full sm:basis-[49%]'>
           <div className='flex flex-col mb-3'>
             <h3 className='text-2xl font-bold text-center mb-3'>Confirmation & Reminder</h3>
-            <div className='flex flex-wrap'>
+            <div className='flex flex-wrap mb-3'>
               <label htmlFor="phone-reminder" className='px-9 py-3 rounded-2xl bg-grey mr-5 w-[130px] flex items-center justify-center relative'>
                 <input
                   type="radio"

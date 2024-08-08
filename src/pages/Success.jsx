@@ -6,7 +6,9 @@ const Success = () => {
   return (
     <>
       <BookingTop isIcons={false} title="Table Reserved"/>
-      <SuccessSection title="The table has been reserved successfully!"/>
+      <SuccessSection title="The table has been reserved successfully!"
+        orderedItems={[]}
+      />
     </>
   )
 }
