@@ -30,14 +30,6 @@ export const cards = [
       link: 'greek-salad'
     },
     {
-      id: 2,
-      qty: 1,
-      img: '/cards/bruchetta.jpg',
-      title: 'Bruchetta',
-      price: '5.99',
-      description: 'Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. ',
-      link: 'bruchetta'},
-    {
       id: 3,
       qty: 1,
       img: '/cards/lemon-dessert.jpg',
@@ -45,7 +37,15 @@ export const cards = [
       price: '5.00',
       description: 'This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.', 
       link: 'lemon-dessert'
-    }
+    },
+    {
+      id: 2,
+      qty: 1,
+      img: '/cards/bruchetta.jpg',
+      title: 'Bruchetta',
+      price: '5.99',
+      description: 'Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. ',
+      link: 'bruchetta'}
 ];
 
 export const icons = [

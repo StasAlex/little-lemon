@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from './Card';
-import { cards } from '../constants/index';
 
-const MenuList = () => {
+const MenuList = ({cards}) => {
+
   return (
-    <div className='flex justify-between flex-wrap'>
+    <div className='flex justify-between lg:justify-start flex-wrap'>
         {cards.map((card) => (
               <Card key={card.title} card={card}/>
             ))}
